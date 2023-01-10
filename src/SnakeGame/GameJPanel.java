@@ -12,9 +12,9 @@ public class GameJPanel extends JPanel implements ActionListener{
 	static final int FRISTSCREEN_Y=0;
 	static final int SCREEN_HEIGTH = 600;
 	static final int SCREEN_WIDTH = 600;
-	static final int UNIT_SIZE=25;
+	static final int UNIT_SIZE=50;
 	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
-	static final int DELAY=200;
+	static final int DELAY=100;
 	
 	final int X[]=new int [GAME_UNITS];
 	final int Y[]=new int [GAME_UNITS];
@@ -93,9 +93,17 @@ public class GameJPanel extends JPanel implements ActionListener{
 	}
 	
 	public void newApple() {
-		Math_Inventory rd = new Math_Inventory();
-		appleX=rd.getRandomNumber(1,(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;                 //random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE; 
-		appleY=rd.getRandomNumber(1,(SCREEN_HEIGTH/UNIT_SIZE))*UNIT_SIZE;                                          //random.nextInt((int)(SCREEN_HEIGTH/UNIT_SIZE))*UNIT_SIZE;
+		appleX=(random.nextInt((int)((SCREEN_WIDTH-UNIT_SIZE*2)/UNIT_SIZE))+1)*UNIT_SIZE; 
+		appleY=(random.nextInt((int)((SCREEN_HEIGTH-UNIT_SIZE*2)/UNIT_SIZE))+1)*UNIT_SIZE;  
+	}
+	
+	public void appleCheck() {
+		if(X[0] == appleX && Y[0] == appleY) {
+			bodyParts++;
+			newApple();
+		}
+		
+		
 	}
 	
 	public void collectionCheck() {
@@ -199,7 +207,8 @@ public class GameJPanel extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		if(running) {
 			move();
-			collectionCheck();
+			appleCheck();
+			
 			
 			}
 			repaint();
