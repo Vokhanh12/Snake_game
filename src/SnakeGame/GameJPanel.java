@@ -17,16 +17,16 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	static final int UNIT_SIZE=50;
 	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
-	static final int DELAY=100;
+	static final int DELAY=50;
 	
 	// fence UP,LEFT,DOWN,RIGHT
 	static final int fenceUP_X[]= new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
-	static final int fenceUP_Y[]= {1} ;
+	static final int fenceUP_Y[]= {0} ;
 	
 	static final int fenceDOWN_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
 	static final int fenceDOWN_Y[]= new int [(SCREEN_HEIGTH/UNIT_SIZE)+1];
 	
-	static final int fenceLEFT_X[]= {1};
+	static final int fenceLEFT_X[]= {0};
 	static final int fenceLEFT_Y[]=new int[(SCREEN_HEIGTH/UNIT_SIZE)+1];
 	
 	static final int fenceRIGHT_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
@@ -36,8 +36,35 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	final int X[]=new int [GAME_UNITS];
 	final int Y[]=new int [GAME_UNITS];
+	// 50 100 150 
+	// 0 1 2 3 4 5 6 7 8 9 10 12
+	// 1 . . . . . . . . . . .
+	// 2
+	// 3
+	// 4
+	// 5
+	// 6
+	// 7
 	
-	int bodyParts =3;
+	char directionRunX ='R';
+	char directionRunY='U';
+	
+				
+					
+				
+					
+					
+					
+				
+				
+				
+			
+			
+			
+	
+	
+	
+	int bodyParts =20;
 	
 	int appleEaten;
 	int appleX,appleY;
@@ -71,6 +98,10 @@ public class GameJPanel extends JPanel implements ActionListener{
 		
 		
 	}
+	
+	
+	
+	
 	
 	
 	public void SetGame() {
@@ -110,6 +141,54 @@ public class GameJPanel extends JPanel implements ActionListener{
 		running = false;
 	}
 	
+	
+	public void toolSnake() {
+		
+		
+		
+			if(directionRunX=='R') {
+				
+				if(X[0]==400-UNIT_SIZE*3) 
+				{
+					
+					directionRunX='L';
+					directionRunX='D';
+					
+					if(directionRunX=='U') {
+						Y[0]-=UNIT_SIZE;
+					}
+					else Y[0]+=UNIT_SIZE;
+					
+					
+				}
+				else if(X[0]==550 && Y[0]==550) {
+
+				} else X[0]+=UNIT_SIZE;
+					 
+				
+			}
+			
+			 if(directionRunX=='L') {
+				 
+					if(X[0]==FRISTSCREEN_X+UNIT_SIZE*3)
+					{
+						directionRunX='R';
+						
+						if(Y[0]==UNIT_SIZE*2) {
+							Y[0]-=UNIT_SIZE;
+						}
+						else Y[0]+=UNIT_SIZE;
+
+						
+						
+					}
+					else  X[0]-=UNIT_SIZE;
+						
+					
+			}
+		
+}
+	
 	public void move() {
 		
 		for(int i = bodyParts-1;i>0;i--) {
@@ -117,7 +196,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 			Y[i]=Y[i-1];
 		}
 		
-		switch(direction) {
+		/*switch(direction) {
 		case 'U':
 			Y[0]=Y[0]-UNIT_SIZE;
 			break;
@@ -131,6 +210,8 @@ public class GameJPanel extends JPanel implements ActionListener{
 			X[0]=X[0]+UNIT_SIZE;
 			break;
 		}
+		*/
+		toolSnake();
 		
 	}
 	
@@ -141,15 +222,30 @@ public class GameJPanel extends JPanel implements ActionListener{
 	}
 	
 	public void appleCheck() {
-		if(X[0] == appleX && Y[0] == appleY) {
-			bodyParts++;
-			newApple();
+		
 			
-			fenceCheck();
-		}
-		
-		
+			if(X[0] == appleX && Y[0] == appleY) {
+				bodyParts++;
+				newApple();
+				
+
+			}
+			
+			for(int i = 1 ;i<bodyParts;i++) {
+				
+			if(X[i] == appleX && Y[i] == appleY) {
+				 newApple();
+				 break;
+				
+			}
+			
+			
+			}
+			
+			
 	}
+		
+		
 	
 	public void fenceCheck() {
 		
@@ -161,7 +257,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				if(X[0]==fenceDOWN_X[j] && Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-2])
+				if(X[0]==fenceDOWN_X[j] && Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-1])
 				{
 					StopGame();
 					break;
@@ -173,7 +269,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				if(X[0]==fenceRIGHT_X[(SCREEN_WIDTH/UNIT_SIZE)-2] && Y[0]==fenceRIGHT_Y[j])
+				if(X[0]==fenceRIGHT_X[(SCREEN_WIDTH/UNIT_SIZE)-1] && Y[0]==fenceRIGHT_Y[j])
 				{
 					StopGame();
 					break;
