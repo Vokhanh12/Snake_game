@@ -17,7 +17,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	static final int UNIT_SIZE=50;
 	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
-	static final int DELAY=50;
+	static final int DELAY=150;
 	
 	// fence UP,LEFT,DOWN,RIGHT
 	static final int fenceUP_X[]= new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
@@ -64,7 +64,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	
 	
-	int bodyParts =20;
+	int bodyParts =5;
 	
 	int appleEaten;
 	int appleX,appleY;
@@ -145,49 +145,8 @@ public class GameJPanel extends JPanel implements ActionListener{
 	public void toolSnake() {
 		
 		
+	}		
 		
-			if(directionRunX=='R') {
-				
-				if(X[0]==400-UNIT_SIZE*3) 
-				{
-					
-					directionRunX='L';
-					directionRunX='D';
-					
-					if(directionRunX=='U') {
-						Y[0]-=UNIT_SIZE;
-					}
-					else Y[0]+=UNIT_SIZE;
-					
-					
-				}
-				else if(X[0]==550 && Y[0]==550) {
-
-				} else X[0]+=UNIT_SIZE;
-					 
-				
-			}
-			
-			 if(directionRunX=='L') {
-				 
-					if(X[0]==FRISTSCREEN_X+UNIT_SIZE*3)
-					{
-						directionRunX='R';
-						
-						if(Y[0]==UNIT_SIZE*2) {
-							Y[0]-=UNIT_SIZE;
-						}
-						else Y[0]+=UNIT_SIZE;
-
-						
-						
-					}
-					else  X[0]-=UNIT_SIZE;
-						
-					
-			}
-		
-}
 	
 	public void move() {
 		
@@ -196,7 +155,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 			Y[i]=Y[i-1];
 		}
 		
-		/*switch(direction) {
+		switch(direction) {
 		case 'U':
 			Y[0]=Y[0]-UNIT_SIZE;
 			break;
@@ -210,7 +169,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 			X[0]=X[0]+UNIT_SIZE;
 			break;
 		}
-		*/
+		
 		toolSnake();
 		
 	}
