@@ -4,26 +4,34 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 public class ScreenStartJFrame extends JFrame{
 	
-	static final int SCREEN_HEIGHT =300;
-	static final int SCREEN_WEIGTH =300;
+	static final int SCREEN_HEIGHT =600;
+	static final int SCREEN_WEIGTH =600;
+	
+	JLayeredPane lyPane =new JLayeredPane();
 	
 	
 	
 	public ScreenStartJFrame() {
-		this.setSize(SCREEN_WEIGTH,SCREEN_HEIGHT);
+		this.setSize(new Dimension(600, 600));
 		
 		this.setTitle("Game Start");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
 		this.setResizable(false);
 		this.setVisible(true);
 		
+		this.add(lyPane);
 		
-		this.add(new ScreenStartJPanel());
-		this.add(new ScreenGameJPanel());
+		//new ScreenGameJPanel()
+		//new ScreenStartJPanel()
+		lyPane.add(new ScreenGameJPanel(),0,0);
+		lyPane.add(new ScreenStartJPanel(),1,1);
+		
+		
+		
 
 		
 	}

@@ -1,8 +1,11 @@
 package SnakeGame;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,8 +16,8 @@ import javax.swing.JPanel;
 
 public class ScreenStartJPanel extends JPanel implements ActionListener
 {
-	static final int SCREEN_WIDTH=300;
-	static final int SCREEN_HEIGTH=300;
+	static final int SCREEN_WIDTH=600;
+	static final int SCREEN_HEIGTH=600;
 
 	
 	JButton btStart = new JButton("Start Game");
@@ -27,17 +30,23 @@ public class ScreenStartJPanel extends JPanel implements ActionListener
 	public ScreenStartJPanel() {
 		
 		//Setting Panel
-		this.setSize(300,300);
-		this.setBounds(0, 0, 300, 300);
-		this.setBackground(new Color(0,0,0,100));
+		this.setSize(SCREEN_WIDTH,SCREEN_HEIGTH);
+		this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH);
+		
+		
+		
+		this.setLayout(null);
+		
+		this.setOpaque(false);
+
 		
 		//Add Item
 		this.add(btStart);
-		btStart.setBounds(90, 50, 100, 50);
+		btStart.setBounds((SCREEN_WIDTH-100)/2, 150, 100, 50);
 		this.add(btOptions);
-		btOptions.setBounds(90, 100, 100, 50);
+		btOptions.setBounds((SCREEN_WIDTH-100)/2, 230, 100, 50);
 		this.add(btClose);
-		btClose.setBounds(90, 150, 100, 50);
+		btClose.setBounds((SCREEN_WIDTH-100)/2, 310, 100, 50);
 		
 		btStart.addActionListener(this);
 		btClose.addActionListener(this);
@@ -48,11 +57,9 @@ public class ScreenStartJPanel extends JPanel implements ActionListener
 	}
 	
 	
-	// TODO Auto-run used to Draw map
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			
-		}
+	protected void paintComponent(Graphics g) {
+	      
+	}
 
 
 	@Override
@@ -61,7 +68,9 @@ public class ScreenStartJPanel extends JPanel implements ActionListener
 		
 		if(e.getSource()==btStart)
 		{
+			super.setVisible(false);
 			new GameJFrame(); 
+			
 		}
 		
 		if(e.getSource()==btOptions)

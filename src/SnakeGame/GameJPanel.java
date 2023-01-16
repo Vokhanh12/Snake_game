@@ -26,7 +26,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	static final int fenceDOWN_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
 	static final int fenceDOWN_Y[]= new int [(SCREEN_HEIGTH/UNIT_SIZE)+1];
 	
-	static final int fenceLEFT_X[]= {0};
+	static final int fenceLEFT_X[]={0};
 	static final int fenceLEFT_Y[]=new int[(SCREEN_HEIGTH/UNIT_SIZE)+1];
 	
 	static final int fenceRIGHT_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
@@ -50,9 +50,10 @@ public class GameJPanel extends JPanel implements ActionListener{
 	char directionRunY='U';
 	
 				
-					
+	char DirectionLR ='R';
+	char DirectionUD ='D';
 				
-					
+				
 					
 					
 				
@@ -64,7 +65,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	
 	
-	int bodyParts =5;
+	int bodyParts =3;
 	
 	int appleEaten;
 	int appleX,appleY;
@@ -129,6 +130,81 @@ public class GameJPanel extends JPanel implements ActionListener{
 		
 	}
 	
+	public void toolSnake() {
+		
+		
+		for(int i = 0;i<SCREEN_HEIGTH/UNIT_SIZE;i++)
+		{
+			if(DirectionLR == 'R')
+			{
+				X[0]+=UNIT_SIZE;
+				
+				
+				if( X[0]==fenceRIGHT_X[(SCREEN_WIDTH/UNIT_SIZE)-1]) 
+				{
+					X[0]-=UNIT_SIZE;
+					
+					DirectionLR ='L';
+					
+					
+					
+					if(DirectionUD=='D')
+					{
+						Y[0]+=UNIT_SIZE;
+						
+						if(Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-1])
+						DirectionUD='U';
+						
+					}
+					else if(DirectionUD=='U')
+					{
+						    Y[0]-=UNIT_SIZE;
+							if(Y[0]==fenceUP_Y[0]+UNIT_SIZE)
+								DirectionUD='D';
+
+					}
+				}
+				
+				break;
+			}
+			else if(DirectionLR == 'L')
+				{
+					X[0]-=UNIT_SIZE;
+					
+					if( X[0]==fenceLEFT_X[0]) 
+					{
+						X[0]+=UNIT_SIZE;
+						
+						DirectionLR ='R';
+						
+						
+						
+						if(DirectionUD=='D')
+						{
+							Y[0]+=UNIT_SIZE;
+							
+							if(Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-2])
+								DirectionUD='U';
+							
+						}
+						else if(DirectionUD=='U')
+						{
+							    Y[0]-=UNIT_SIZE;
+							    
+							    if(Y[0]==fenceUP_Y[0]+UNIT_SIZE)
+									DirectionUD='D';
+						}
+						
+					}
+					break;
+					
+				}
+		}
+	}		
+			
+
+	
+	
 	public void StartGame() {
 		newApple();
 		running =true;
@@ -142,10 +218,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 	}
 	
 	
-	public void toolSnake() {
-		
-		
-	}		
 		
 	
 	public void move() {
@@ -154,7 +226,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 			X[i]=X[i-1];
 			Y[i]=Y[i-1];
 		}
-		
 		switch(direction) {
 		case 'U':
 			Y[0]=Y[0]-UNIT_SIZE;
@@ -170,7 +241,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 			break;
 		}
 		
-		toolSnake();
 		
 	}
 	
@@ -208,9 +278,9 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	public void fenceCheck() {
 		
-			for(int j=0;j<=SCREEN_HEIGTH/UNIT_SIZE;j++) {
+			for(int j=1;j<=SCREEN_HEIGTH/UNIT_SIZE;j++) {
 				
-				if(X[0]==fenceUP_X[j] && Y[0]==fenceUP_Y[0]*UNIT_SIZE) 
+				if(X[0]==fenceUP_X[j] && Y[0]==fenceUP_Y[0]) 
 				{
 					StopGame();
 					break;
@@ -222,7 +292,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				if(X[0]==fenceLEFT_X[0]*UNIT_SIZE && Y[0]==fenceLEFT_Y[j])
+				if(X[0]==fenceLEFT_X[0] && Y[0]==fenceLEFT_Y[j])
 				{
 					StopGame();
 					break;
