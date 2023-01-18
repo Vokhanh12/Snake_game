@@ -1,5 +1,7 @@
 package SnakeGame;
 
+import static SnakeGame.SystemConfig.*;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,8 +18,7 @@ import javax.swing.JPanel;
 
 public class ScreenStartJPanel extends JPanel implements ActionListener
 {
-	static final int SCREEN_WIDTH=600;
-	static final int SCREEN_HEIGTH=600;
+
 
 	
 	JButton btStart = new JButton("Start Game");
@@ -68,7 +69,7 @@ public class ScreenStartJPanel extends JPanel implements ActionListener
 		
 		if(e.getSource()==btStart)
 		{
-			super.setVisible(false);
+			
 			new GameJFrame(); 
 			
 		}

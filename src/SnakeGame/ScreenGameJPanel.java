@@ -1,5 +1,7 @@
 package SnakeGame;
 
+import static SnakeGame.SystemConfig.*;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,15 +23,9 @@ import SnakeGame.GameJPanel.MyKeyAdapter;
 
 public class ScreenGameJPanel extends JPanel implements ActionListener{
 	
-	final static int SCREEN_HEIGTH =600;
-	final static int SCREEN_WIDTH =600;
 	
 	static final int FRISTSCREEN_X=0;
 	static final int FRISTSCREEN_Y=0;
-	
-	static final int UNIT_SIZE=50;
-	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
-	static final int DELAY=250;
 	
 	// fence UP,LEFT,DOWN,RIGHT
 	static final int fenceUP_X[]= new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
@@ -48,16 +44,6 @@ public class ScreenGameJPanel extends JPanel implements ActionListener{
 	
 	final int X[]=new int [GAME_UNITS];
 	final int Y[]=new int [GAME_UNITS];
-	// 50 100 150 
-	// 0 1 2 3 4 5 6 7 8 9 10 12
-	// 1 . . . . . . . . . . .
-	// 2
-	// 3
-	// 4
-	// 5
-	// 6
-	// 7
-	
 				
 	char DirectionLR ='R';
 	char DirectionUD ='D';
@@ -71,9 +57,6 @@ public class ScreenGameJPanel extends JPanel implements ActionListener{
 	char direction = 'R';
 	
     boolean running = false;
-    
-    
- 
     
     
 	Timer timer;
@@ -99,13 +82,6 @@ public class ScreenGameJPanel extends JPanel implements ActionListener{
 		
 	}
 
-	
-    
-	
-	
-	
-	
-	
 	
 	public void SetGame() {
 		//SET LOCATION
@@ -341,7 +317,7 @@ public class ScreenGameJPanel extends JPanel implements ActionListener{
 
 	
 	public void drawMap(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.DARK_GRAY);
 		
 		//build a fence above
 		g.fillRect(FRISTSCREEN_X,FRISTSCREEN_Y, SCREEN_WIDTH, UNIT_SIZE);

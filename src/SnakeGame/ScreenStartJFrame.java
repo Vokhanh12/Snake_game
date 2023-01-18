@@ -1,22 +1,24 @@
 package SnakeGame;
 
-import java.awt.Color;
+
+import static SnakeGame.SystemConfig.*;
+
 import java.awt.Dimension;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 public class ScreenStartJFrame extends JFrame{
+
+
 	
-	static final int SCREEN_HEIGHT =600;
-	static final int SCREEN_WEIGTH =600;
-	
-	JLayeredPane lyPane =new JLayeredPane();
+	public static JLayeredPane lyPane =new JLayeredPane();
 	
 	
 	
 	public ScreenStartJFrame() {
-		this.setSize(new Dimension(600, 600));
+		this.setSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGTH));
 		
 		this.setTitle("Game Start");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

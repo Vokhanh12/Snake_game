@@ -1,5 +1,7 @@
 package SnakeGame;
 
+import static SnakeGame.SystemConfig.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -12,39 +14,23 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	static final int FRISTSCREEN_X=0;
 	static final int FRISTSCREEN_Y=0;
-	static final int SCREEN_HEIGTH = 600;
-    static final int SCREEN_WIDTH = 600;
-	
-	static final int UNIT_SIZE=50;
-	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
-	static final int DELAY=150;
-	
 	// fence UP,LEFT,DOWN,RIGHT
-	static final int fenceUP_X[]= new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
-	static final int fenceUP_Y[]= {0} ;
+	static final int fenceUP_X[]= new int [(SCREEN_WIDTH/UNIT_SIZE)+2];
+	static final int fenceUP_Y[]= {UNIT_SIZE} ;
 	
-	static final int fenceDOWN_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
-	static final int fenceDOWN_Y[]= new int [(SCREEN_HEIGTH/UNIT_SIZE)+1];
+	static final int fenceDOWN_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+2];
+	static final int fenceDOWN_Y[]= new int [(SCREEN_HEIGTH/UNIT_SIZE)+2];
 	
-	static final int fenceLEFT_X[]={0};
-	static final int fenceLEFT_Y[]=new int[(SCREEN_HEIGTH/UNIT_SIZE)+1];
+	static final int fenceLEFT_X[]={UNIT_SIZE};
+	static final int fenceLEFT_Y[]=new int[(SCREEN_HEIGTH/UNIT_SIZE)+2];
 	
-	static final int fenceRIGHT_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+1];
-	static final int fenceRIGHT_Y[]=new int [(SCREEN_HEIGTH/UNIT_SIZE)+1];
+	static final int fenceRIGHT_X[]=new int [(SCREEN_WIDTH/UNIT_SIZE)+2];
+	static final int fenceRIGHT_Y[]=new int [(SCREEN_HEIGTH/UNIT_SIZE)+2];
 
 	//this line used to create the fence in the game
 	
 	final int X[]=new int [GAME_UNITS];
 	final int Y[]=new int [GAME_UNITS];
-	// 50 100 150 
-	// 0 1 2 3 4 5 6 7 8 9 10 12
-	// 1 . . . . . . . . . . .
-	// 2
-	// 3
-	// 4
-	// 5
-	// 6
-	// 7
 	
 	char directionRunX ='R';
 	char directionRunY='U';
@@ -53,18 +39,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 	char DirectionLR ='R';
 	char DirectionUD ='D';
 				
-				
-					
-					
-				
-				
-				
-			
-			
-			
-	
-	
-	
 	int bodyParts =3;
 	
 	int appleEaten;
@@ -73,10 +47,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 	char direction = 'R';
 	
     boolean running = false;
-    
-    
- 
-    
     
 	Timer timer;
 	Random random;
@@ -88,7 +58,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 		
 		random = new Random();
 		
-		this.setPreferredSize(new Dimension(SCREEN_HEIGTH,SCREEN_WIDTH));
+		this.setSize(SCREEN_WIDTH,SCREEN_HEIGTH);
 		this.setFocusable(true);
 		this.setBackground(Color.black);
 		this.addKeyListener(new MyKeyAdapter());
@@ -245,8 +215,9 @@ public class GameJPanel extends JPanel implements ActionListener{
 	}
 	
 	public void newApple() {
-	    appleX=(random.nextInt((int)((SCREEN_WIDTH-UNIT_SIZE*2)/UNIT_SIZE))+1)*UNIT_SIZE; 
-		appleY=(random.nextInt((int)((SCREEN_HEIGTH-UNIT_SIZE*2)/UNIT_SIZE))+1)*UNIT_SIZE; 
+	    appleX=(random.nextInt((int)((SCREEN_WIDTH-UNIT_SIZE*4)/UNIT_SIZE))+2)*UNIT_SIZE; 
+		appleY=(random.nextInt((int)((SCREEN_HEIGTH-UNIT_SIZE*4)/UNIT_SIZE))+2)*UNIT_SIZE; 
+		
 
 	}
 	
@@ -286,7 +257,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				if(X[0]==fenceDOWN_X[j] && Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-1])
+				if(X[0]==fenceDOWN_X[j] && Y[0]==fenceDOWN_Y[(SCREEN_HEIGTH/UNIT_SIZE)-2])
 				{
 					StopGame();
 					break;
@@ -298,7 +269,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				if(X[0]==fenceRIGHT_X[(SCREEN_WIDTH/UNIT_SIZE)-1] && Y[0]==fenceRIGHT_Y[j])
+				if(X[0]==fenceRIGHT_X[(SCREEN_WIDTH/UNIT_SIZE)-2] && Y[0]==fenceRIGHT_Y[j])
 				{
 					StopGame();
 					break;
@@ -330,13 +301,13 @@ public class GameJPanel extends JPanel implements ActionListener{
 		g.setColor(Color.white);
 		
 		//build a fence above
-		g.fillRect(FRISTSCREEN_X,FRISTSCREEN_Y, SCREEN_WIDTH, UNIT_SIZE);
+		g.fillRect(FRISTSCREEN_X,FRISTSCREEN_Y, SCREEN_WIDTH, UNIT_SIZE*2);
 		//build a fence on the left
-		g.fillRect(FRISTSCREEN_X,FRISTSCREEN_Y, UNIT_SIZE, SCREEN_HEIGTH);
+		g.fillRect(FRISTSCREEN_X,FRISTSCREEN_Y, UNIT_SIZE*2, SCREEN_HEIGTH);
 		//build a fence on the right
-		g.fillRect(SCREEN_WIDTH-UNIT_SIZE,FRISTSCREEN_Y, UNIT_SIZE, SCREEN_HEIGTH);
+		g.fillRect(SCREEN_WIDTH-UNIT_SIZE*2,FRISTSCREEN_Y, UNIT_SIZE*2, SCREEN_HEIGTH);
 		//build a fence under
-		g.fillRect(FRISTSCREEN_X,SCREEN_HEIGTH-UNIT_SIZE,SCREEN_WIDTH,UNIT_SIZE);
+		g.fillRect(FRISTSCREEN_X,SCREEN_HEIGTH-UNIT_SIZE*2,SCREEN_WIDTH,UNIT_SIZE*2);
 	
 	}
 	
@@ -418,8 +389,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 			move();
 			appleCheck();
 			fenceCheck();
-			
-			
 			}
 			repaint();
 	}
