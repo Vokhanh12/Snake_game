@@ -12,5 +12,9 @@ public final class SystemConfig {
 	static final int GAME_UNITS=(SCREEN_HEIGTH*SCREEN_WIDTH)/UNIT_SIZE;
 	static final int DELAY=150;
 	
+	static int bodyParts =3;
+	
+	
 
 }
+

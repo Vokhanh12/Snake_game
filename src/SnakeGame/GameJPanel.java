@@ -39,7 +39,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 	char DirectionLR ='R';
 	char DirectionUD ='D';
 				
-	int bodyParts =3;
 	
 	int appleEaten;
 	int appleX,appleY;
@@ -378,8 +377,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 		 
 	}
 
-
-
+	
 
 
 	@Override
@@ -389,9 +387,9 @@ public class GameJPanel extends JPanel implements ActionListener{
 			move();
 			appleCheck();
 			fenceCheck();
-			}
 			repaint();
+		}
+	
+	
 	}
-	
-	
 }

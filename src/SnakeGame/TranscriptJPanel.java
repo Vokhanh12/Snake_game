@@ -1,21 +1,32 @@
 package SnakeGame;
 
+
+import static SnakeGame.SystemConfig.*;
+
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
-public class TranscriptJPanel extends JPanel{
+public class TranscriptJPanel extends JPanel implements ActionListener{
 
-	
 	static final int SCREEN_WIDTH =600;
 	static final int SCREEN_HEIGTH=100;
 	
+	
+	int SCORE=bodyParts;
+	
+	Timer timer;
+	
 	JLayeredPane layPane = new JLayeredPane();
 	
+	JLabel lbScore= new JLabel();
 	
 	
 	
@@ -30,7 +41,7 @@ public class TranscriptJPanel extends JPanel{
 		
 		this.add(layPane);
 		
-		JLabel lbScore= new JLabel("SCORE:");
+		
 		lbScore.setOpaque(true);
 		lbScore.setBackground(Color.red);
 		lbScore.setBounds(0, 0, SCREEN_WIDTH/2, SCREEN_HEIGTH);
@@ -38,10 +49,31 @@ public class TranscriptJPanel extends JPanel{
 		lbScore.setVerticalAlignment(SwingConstants.CENTER);
 		layPane.add(lbScore);
 		
+		StartScore();
 		
 		
 		
-		
-		
+	}
+	 
+	 public void StartScore() {
+			// what the fuck this line
+			timer = new Timer(DELAY,this);
+			timer.start();
+		}
+
+	 public void Update() {
+		 
+		 SCORE = bodyParts-3;
+		 lbScore.setText("SCORE:"+SCORE);
+
+		 
+		 
+	 }
+	 
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+			Update();
 	}
 }
