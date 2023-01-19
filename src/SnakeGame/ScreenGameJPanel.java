@@ -285,8 +285,6 @@ public class ScreenGameJPanel extends JPanel implements ActionListener{
 					break;
 				}
 				
-				
-				System.out.println("ERRO => fenceCHECK");
 		}
 	}
 	

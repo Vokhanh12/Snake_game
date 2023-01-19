@@ -3,6 +3,8 @@ package SnakeGame;
 import static SnakeGame.SystemConfig.SCREEN_HEIGTH;
 import static SnakeGame.SystemConfig.SCREEN_WIDTH;
 
+import java.io.File;
+
 public final class SystemConfig {
 	
 	static final int SCREEN_HEIGTH =600;
@@ -13,8 +15,9 @@ public final class SystemConfig {
 	static final int DELAY=150;
 	
 	static int bodyParts =3;
+	static int firstScore=bodyParts;
 	
-	
+	static final File fileScore = new File("C:\\Users\\Khanh\\eclipse-workspace\\Game\\ScoreGame.txt");
 
 }
 

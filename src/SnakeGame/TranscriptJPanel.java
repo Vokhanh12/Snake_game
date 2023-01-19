@@ -1,5 +1,7 @@
 package SnakeGame;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static SnakeGame.SystemConfig.*;
 
@@ -7,6 +9,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -27,10 +31,11 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 	JLayeredPane layPane = new JLayeredPane();
 	
 	JLabel lbScore= new JLabel();
-	
+	JLabel maxScore = new JLabel();
 	
 	
 	 TranscriptJPanel() {
+		 
 		this.setSize(SCREEN_WIDTH, SCREEN_HEIGTH);
 		this.setBounds(0, 0, SCREEN_WIDTH,SCREEN_HEIGTH);
 		this.setBackground(Color.WHITE);
@@ -43,17 +48,52 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		
 		
 		lbScore.setOpaque(true);
-		lbScore.setBackground(Color.red);
+		lbScore.setBackground(Color.BLACK);
 		lbScore.setBounds(0, 0, SCREEN_WIDTH/2, SCREEN_HEIGTH);
 		lbScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lbScore.setVerticalAlignment(SwingConstants.CENTER);
+		lbScore.setForeground(Color.WHITE);
 		layPane.add(lbScore);
+		
+		maxScore.setOpaque(true);
+		maxScore.setBackground(Color.BLUE);
+		maxScore.setBounds(SCREEN_WIDTH/2, 0,SCREEN_WIDTH/2, SCREEN_HEIGTH);
+		maxScore.setHorizontalAlignment(SwingConstants.CENTER);
+		maxScore.setVerticalAlignment(SwingConstants.CENTER);
+		maxScore.setForeground(Color.WHITE);
+		
+		maxScore.setText("MAX SCORE:"+(char)Integer.parseInt(scoreFindMax()));
+		layPane.add(maxScore);
 		
 		StartScore();
 		
 		
 		
 	}
+	 
+	 public String scoreFindMax() {
+		 
+		 int scoreMax=0;
+		 
+		 ArrayList<String> ScoreSnake = new ArrayList<String>();
+		 
+		 try(FileInputStream fileStream = new FileInputStream(fileScore)){
+			 
+			 InputStreamReader reader = new InputStreamReader(fileStream);
+			 
+			 int Character;
+			 while((Character = reader.read()) != -1) {
+				 ScoreSnake.add(String.valueOf(Character));
+			 }
+			 
+			 Collections.sort(ScoreSnake);
+			 
+		 }
+		 catch(Exception ex) {
+			 
+		 }
+		 return ScoreSnake.get(ScoreSnake.size()-1);
+	 }
 	 
 	 public void StartScore() {
 			// what the fuck this line
@@ -66,7 +106,6 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		 SCORE = bodyParts-3;
 		 lbScore.setText("SCORE:"+SCORE);
 
-		 
 		 
 	 }
 	 

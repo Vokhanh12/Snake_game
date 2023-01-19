@@ -4,6 +4,9 @@ import static SnakeGame.SystemConfig.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -50,6 +53,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	Timer timer;
 	Random random;
 	
+
 	
     
     
@@ -171,7 +175,29 @@ public class GameJPanel extends JPanel implements ActionListener{
 		}
 	}		
 			
-
+	
+	
+	public void saveScore() {
+		
+		int SCORE=bodyParts-firstScore;
+		String newLine = System.getProperty("line.separator");
+		
+		try(FileOutputStream fileStream = new FileOutputStream(fileScore,true)){
+			
+			OutputStreamWriter Writer = new OutputStreamWriter(fileStream);
+			
+			Writer.write(String.valueOf(SCORE));
+			Writer.write(newLine);
+	        
+	        Writer.close();
+			
+		}
+		catch(Exception ex) {
+			 ex.getStackTrace();
+		}	
+		
+		
+	}
 	
 	
 	public void StartGame() {
@@ -184,6 +210,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	
 	public void StopGame() {
 		running = false;
+		saveScore();
 	}
 	
 	
@@ -275,7 +302,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 				}
 				
 				
-				System.out.println("ERRO => fenceCHECK");
 		}
 	}
 	
