@@ -26,7 +26,8 @@ public class GameJFrame extends JFrame{
 		
 		this.add(lyPane);
 		lyPane.add(new GameJPanel(),0,0);
-		lyPane.add(new TranscriptJPanel(),1,1);
+		lyPane.add(new gameSubJPanel(),1,1);
+		lyPane.add(new TranscriptJPanel(),2,2);
 		
 		
 		

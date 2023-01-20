@@ -20,8 +20,8 @@ import javax.swing.Timer;
 
 public class TranscriptJPanel extends JPanel implements ActionListener{
 
-	static final int SCREEN_WIDTH =600;
-	static final int SCREEN_HEIGTH=100;
+	static final int TRANSCRIPT_SCREEN_WIDTH =600;
+	static final int TRANSCRIPT_SCREEN_HEIGTH=100;
 	
 	
 	int SCORE=bodyParts;
@@ -36,11 +36,11 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 	
 	 TranscriptJPanel() {
 		 
-		this.setSize(SCREEN_WIDTH, SCREEN_HEIGTH);
-		this.setBounds(0, 0, SCREEN_WIDTH,SCREEN_HEIGTH);
+		this.setSize(TRANSCRIPT_SCREEN_WIDTH, TRANSCRIPT_SCREEN_HEIGTH);
+		this.setBounds(0, 0, TRANSCRIPT_SCREEN_WIDTH,TRANSCRIPT_SCREEN_HEIGTH);
 		this.setBackground(Color.WHITE);
 		
-		layPane.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGTH));
+		layPane.setPreferredSize(new Dimension(TRANSCRIPT_SCREEN_WIDTH,TRANSCRIPT_SCREEN_HEIGTH));
 		layPane.setBackground(Color.DARK_GRAY);
 		
 		
@@ -49,7 +49,7 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		
 		lbScore.setOpaque(true);
 		lbScore.setBackground(Color.BLACK);
-		lbScore.setBounds(0, 0, SCREEN_WIDTH/2, SCREEN_HEIGTH);
+		lbScore.setBounds(0, 0, TRANSCRIPT_SCREEN_WIDTH/2, TRANSCRIPT_SCREEN_HEIGTH);
 		lbScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lbScore.setVerticalAlignment(SwingConstants.CENTER);
 		lbScore.setForeground(Color.WHITE);
@@ -57,7 +57,7 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		
 		maxScore.setOpaque(true);
 		maxScore.setBackground(Color.BLUE);
-		maxScore.setBounds(SCREEN_WIDTH/2, 0,SCREEN_WIDTH/2, SCREEN_HEIGTH);
+		maxScore.setBounds(SCREEN_WIDTH/2, 0,TRANSCRIPT_SCREEN_WIDTH/2, TRANSCRIPT_SCREEN_HEIGTH);
 		maxScore.setHorizontalAlignment(SwingConstants.CENTER);
 		maxScore.setVerticalAlignment(SwingConstants.CENTER);
 		maxScore.setForeground(Color.WHITE);
