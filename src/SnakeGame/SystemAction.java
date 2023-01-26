@@ -6,12 +6,16 @@ public interface SystemAction {
 	
 	void StartGame(GameJPanel gamePanel);
 	
-	void GameOver(Graphics g);
+	void GameOverDraw(Graphics g);
 	
 	void StopGame();
 	
 	void SetGame();
 	
 	void saveScore();
+	
+	void timeCount(Graphics g);
+	
+	void StartTimeCount(Graphics g);
 	
 }

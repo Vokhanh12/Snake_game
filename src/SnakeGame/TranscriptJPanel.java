@@ -65,6 +65,8 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		maxScore.setText("MAX SCORE:"+(char)Integer.parseInt(scoreFindMax()));
 		layPane.add(maxScore);
 		
+
+		
 		StartScore();
 		
 		
@@ -105,6 +107,8 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		 
 		 SCORE = bodyParts-3;
 		 lbScore.setText("SCORE:"+SCORE);
+		 
+		 
 
 		 
 	 }
@@ -114,5 +118,6 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 			Update();
+
 	}
 }

@@ -6,18 +6,30 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.*;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
 import javax.swing.Timer;
+public class Game implements SystemAction,AppleAction,ActionListener{
+	
+	static final int DELAYCOUNT=1000;
+	
+	Timer tmTimeCount;
+	
+	int a = k;
+	
+	Game(){
+		
 
-public class Game implements SystemAction,AppleAction{
-
+	}
+	
+	
 	@Override
 	public void StartGame(GameJPanel gamePanel) {
 		// TODO Auto-generated method stub
 		appleCreate();
-		running =true;
 		timerSnake = new Timer(DELAY,gamePanel);
 		timerSnake.start();
 	}
@@ -104,12 +116,66 @@ public class Game implements SystemAction,AppleAction{
 	}
 
 	@Override
-	public void GameOver(Graphics g) {
+	public void GameOverDraw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.setColor(Color.red);
 		g.setFont(new Font("Ink Free",Font.BOLD,75));
 		FontMetrics metrics = g.getFontMetrics(g.getFont());
 		g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGTH/2);
+	}
+
+	@Override
+	public void timeCount(Graphics g) {
+		// TODO Auto-generated method stub
+				
+		
+		
+
+		
+				tmTimeCount = new Timer(DELAYCOUNT,new ActionListener() {
+					
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						
+						if(k==0)
+						running =true;
+						else k--;
+
+					}
+					
+					
+				});
+				
+				tmTimeCount.start();	
+
+				
+				
+	}
+
+	@Override
+	public void StartTimeCount(Graphics g) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		timeCount(g);
+		
+		
+
+		
+		
+		
+
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		
 	}
 
 

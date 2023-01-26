@@ -15,12 +15,15 @@ import java.lang.Cloneable;
 public class GameJPanel extends JPanel implements ActionListener{
 	
     
-	Timer timer;
 	Random random;
 	
 	Game SnakeGameIn = new Game();
 	MapGame MapGameIn = new MapGame();
     Snake SnakeAction = new Snake();
+    
+    JLabel timeLabel = new JLabel();
+    
+    int a = 3;
     
 	public GameJPanel() {
 		
@@ -37,18 +40,39 @@ public class GameJPanel extends JPanel implements ActionListener{
 		//Start the Game
 		SnakeGameIn.StartGame(this);
 		
+		
+		
 	}
 	
 	
 	// TODO Auto-run used to Draw map
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		//Draw Map
-		if(running)
-		MapGameIn.SetMap(g);
-		else MapGameIn.GameOver(g);
 		
-	}
+		Timer newtimer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		g.setColor(Color.BLUE);
+		g.setFont(new Font("Ink Free",Font.BOLD,75));
+		FontMetrics metrics = g.getFontMetrics(g.getFont());
+		
+		g.drawString(""+String.valueOf(a), (100 - metrics.stringWidth(""+String.valueOf(a))), SCREEN_HEIGTH/2);
+		
+		a--;
+		}});
+		
+		newtimer.start();		
+		
+		SnakeGameIn.timeCount(g);
+		
+		//Draw Map and GameOver
+		if(running) {
+		MapGameIn.SetMap(g);
+		}
+		else if(running == false && k==0) MapGameIn.GameOverDraw(g);
+		
+		}
+	
 
 	//Console PlayGAME
 	public class MyKeyAdapter extends KeyAdapter{
@@ -85,6 +109,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+
 		if(running) {
 			SnakeAction.move();
 			SnakeGameIn.appleCheck();

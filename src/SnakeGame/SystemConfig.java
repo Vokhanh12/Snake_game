@@ -59,6 +59,10 @@ public final class SystemConfig {
     static Timer timerSnake;
     
     static Random randomSnake = new Random();
+    
+    static int timeRun =0; //0s
+    
+    static int k=5;
 
 
 }

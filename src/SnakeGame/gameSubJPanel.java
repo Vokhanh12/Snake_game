@@ -50,8 +50,8 @@ public class gameSubJPanel extends JPanel implements ActionListener{
 	            RenderingHints.VALUE_ANTIALIAS_ON);
 	        g2d.setComposite(AlphaComposite.getInstance(
 	            AlphaComposite.SRC_OVER, 0.5f));
-	        g2d.setColor(Color.BLACK);
-	        g2d.fillRect(0, 100, 600, 500);
+	        g2d.setColor(Color.RED);
+	        g2d.fillRect(100, 100, 400, 400);
 	        
 	}
 	
