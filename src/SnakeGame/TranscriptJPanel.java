@@ -7,6 +7,7 @@ import static SnakeGame.SystemConfig.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -113,6 +114,10 @@ public class TranscriptJPanel extends JPanel implements ActionListener{
 		 
 	 }
 	 
+	 
+	 public void paintComponent(Graphics g) {
+		 
+	 }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

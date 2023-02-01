@@ -9,6 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -25,6 +26,9 @@ public class gameSubJPanel extends JPanel implements ActionListener{
 	gameSubJPanel(){
 		this.setSize(new Dimension(GAMESUB_SCREEN_WIDTH,GAMESUB_SCREEN_HEIGTH));
 		this.setOpaque(false);
+		
+		this.setBounds(100,100, 100, 100);
+		
 		
 		counterNumber();
 		

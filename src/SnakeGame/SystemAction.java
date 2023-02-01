@@ -14,8 +14,6 @@ public interface SystemAction {
 	
 	void saveScore();
 	
-	void timeCount(Graphics g);
 	
-	void StartTimeCount(Graphics g);
 	
 }

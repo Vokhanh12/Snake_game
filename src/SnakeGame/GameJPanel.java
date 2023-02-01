@@ -21,8 +21,6 @@ public class GameJPanel extends JPanel implements ActionListener{
 	MapGame MapGameIn = new MapGame();
     Snake SnakeAction = new Snake();
     
-    JLabel timeLabel = new JLabel();
-    
     int a = 3;
     
 	public GameJPanel() {
@@ -31,47 +29,17 @@ public class GameJPanel extends JPanel implements ActionListener{
 		
 		this.setSize(SCREEN_WIDTH,SCREEN_HEIGTH);
 		this.setFocusable(true);
-		this.setBackground(Color.black);
+		this.setBackground(Color.GREEN);
 		this.addKeyListener(new MyKeyAdapter());
-		
 		
 		//Set the functions in game
 		SnakeGameIn.SetGame();
 		//Start the Game
 		SnakeGameIn.StartGame(this);
 		
-		
-		
 	}
 	
 	
-	// TODO Auto-run used to Draw map
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		
-		Timer newtimer = new Timer(1000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		g.setColor(Color.BLUE);
-		g.setFont(new Font("Ink Free",Font.BOLD,75));
-		FontMetrics metrics = g.getFontMetrics(g.getFont());
-		
-		g.drawString(""+String.valueOf(a), (100 - metrics.stringWidth(""+String.valueOf(a))), SCREEN_HEIGTH/2);
-		
-		a--;
-		}});
-		
-		newtimer.start();		
-		
-		SnakeGameIn.timeCount(g);
-		
-		//Draw Map and GameOver
-		if(running) {
-		MapGameIn.SetMap(g);
-		}
-		else if(running == false && k==0) MapGameIn.GameOverDraw(g);
-		
-		}
 	
 
 	//Console PlayGAME
@@ -104,6 +72,14 @@ public class GameJPanel extends JPanel implements ActionListener{
 	}
 
 	
+	// TODO Auto-run used to Draw map
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		MapGameIn.SetMap(g);
+
+		
+		//Draw Map and GameOver
+	}
 
 
 	@Override
@@ -116,6 +92,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 			MapGameIn.frenceCheck();
 			repaint();
 		}
+		else if(running == false && TIME==-1) MapGameIn.GameOverDraw(getGraphics());
 	
 	
 	}

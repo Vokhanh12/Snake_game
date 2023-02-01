@@ -25,9 +25,12 @@ public class GameJFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 		
 		this.add(lyPane);
-		lyPane.add(new GameJPanel(),0,0);
-		lyPane.add(new gameSubJPanel(),1,1);
-		lyPane.add(new TranscriptJPanel(),2,2);
+		
+		lyPane.add(new GameJPanel(),1,1);
+		lyPane.add(new gameSubJPanel(),2,2);
+		lyPane.add(new TranscriptJPanel(),3,3);
+		lyPane.add(new timeRunPanel(),4,4);
+
 		
 		
 		

@@ -60,9 +60,14 @@ public final class SystemConfig {
     
     static Random randomSnake = new Random();
     
-    static int timeRun =0; //0s
     
-    static int k=5;
+    
+	static int delay_timeRun=1000;
+	static int TIME=5;
+
+    
+    
+    
 
 
 }

@@ -18,7 +18,6 @@ public class Game implements SystemAction,AppleAction,ActionListener{
 	
 	Timer tmTimeCount;
 	
-	int a = k;
 	
 	Game(){
 		
@@ -118,58 +117,13 @@ public class Game implements SystemAction,AppleAction,ActionListener{
 	@Override
 	public void GameOverDraw(Graphics g) {
 		// TODO Auto-generated method stub
+		if(running == false && TIME == 0)
 		g.setColor(Color.red);
 		g.setFont(new Font("Ink Free",Font.BOLD,75));
 		FontMetrics metrics = g.getFontMetrics(g.getFont());
 		g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGTH/2);
 	}
 
-	@Override
-	public void timeCount(Graphics g) {
-		// TODO Auto-generated method stub
-				
-		
-		
-
-		
-				tmTimeCount = new Timer(DELAYCOUNT,new ActionListener() {
-					
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-
-						
-						if(k==0)
-						running =true;
-						else k--;
-
-					}
-					
-					
-				});
-				
-				tmTimeCount.start();	
-
-				
-				
-	}
-
-	@Override
-	public void StartTimeCount(Graphics g) {
-		// TODO Auto-generated method stub
-		
-		
-		
-		timeCount(g);
-		
-		
-
-		
-		
-		
-
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
