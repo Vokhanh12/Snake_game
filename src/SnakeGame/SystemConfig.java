@@ -64,6 +64,8 @@ public final class SystemConfig {
     
 	static int delay_timeRun=1000;
 	static int TIME=5;
+	
+	static boolean SetupGame=false;
 
     
     

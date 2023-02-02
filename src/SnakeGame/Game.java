@@ -117,7 +117,6 @@ public class Game implements SystemAction,AppleAction,ActionListener{
 	@Override
 	public void GameOverDraw(Graphics g) {
 		// TODO Auto-generated method stub
-		if(running == false && TIME == 0)
 		g.setColor(Color.red);
 		g.setFont(new Font("Ink Free",Font.BOLD,75));
 		FontMetrics metrics = g.getFontMetrics(g.getFont());
@@ -130,6 +129,17 @@ public class Game implements SystemAction,AppleAction,ActionListener{
 		// TODO Auto-generated method stub
 		
 		
+	}
+
+
+	@Override
+	public void StartGameDraw(Graphics g) {
+		// TODO Auto-generated method stub
+		if(running == false && TIME == -1)
+			g.setColor(Color.red);
+			g.setFont(new Font("Ink Free",Font.BOLD,75));
+			FontMetrics metrics = g.getFontMetrics(g.getFont());
+			g.drawString("Start Game", (SCREEN_WIDTH - metrics.stringWidth("Start Game"))/2, SCREEN_HEIGTH/2);
 	}
 
 

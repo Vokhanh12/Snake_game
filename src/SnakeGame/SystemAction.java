@@ -14,6 +14,6 @@ public interface SystemAction {
 	
 	void saveScore();
 	
-	
+	void StartGameDraw(Graphics g);
 	
 }

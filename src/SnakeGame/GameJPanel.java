@@ -21,6 +21,8 @@ public class GameJPanel extends JPanel implements ActionListener{
 	MapGame MapGameIn = new MapGame();
     Snake SnakeAction = new Snake();
     
+    Timer tmbugTime;
+    
     int a = 3;
     
 	public GameJPanel() {
@@ -29,7 +31,7 @@ public class GameJPanel extends JPanel implements ActionListener{
 		
 		this.setSize(SCREEN_WIDTH,SCREEN_HEIGTH);
 		this.setFocusable(true);
-		this.setBackground(Color.GREEN);
+		this.setBackground(Color.BLACK);
 		this.addKeyListener(new MyKeyAdapter());
 		
 		//Set the functions in game
@@ -92,7 +94,31 @@ public class GameJPanel extends JPanel implements ActionListener{
 			MapGameIn.frenceCheck();
 			repaint();
 		}
-		else if(running == false && TIME==-1) MapGameIn.GameOverDraw(getGraphics());
+		else 
+		{
+			if(TIME==-1)
+			{
+			MapGameIn.StartGameDraw(getGraphics());
+			}
+			else
+			{
+				if(TIME==-2)
+				{
+				tmbugTime = new Timer(1000 ,new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						if(running == false)
+						MapGameIn.GameOverDraw(getGraphics());
+					}
+				});
+				tmbugTime.start();
+				}
+			}
+					
+			
+			
+		}
 	
 	
 	}
